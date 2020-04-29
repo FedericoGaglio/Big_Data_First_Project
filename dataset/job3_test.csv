@@ -1,0 +1,6 @@
+ticker,exchange,name,sector,industry
+T5,X,APPLE,S3,X
+T4,X,GOOGLE,S3,X
+T3,X,AMAZON,S2,X
+T1,X,FACEBOOK,S1,X
+T2,X,MICROSOFT,S1,X

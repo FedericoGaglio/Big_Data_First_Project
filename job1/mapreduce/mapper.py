@@ -16,11 +16,11 @@ for line in sys.stdin:
 
     # if there aren't all data, skip
     if len(data) == 8:
-        ticker, _, close, _, low, high, volume, date = data
+        ticker, _, close, _, _, _, volume, date = data
 
         # ignore file's first row
         if ticker != 'ticker':
             year = int(date[0:4])
             # check if year is in range (START_YEAR, END_YEAR)
             if respect_condition(year):
-                print('{},{},{},{},{},{}'.format(ticker, date, close, low, high, volume))
+                print('{},{},{},{}'.format(ticker, date, close, volume))

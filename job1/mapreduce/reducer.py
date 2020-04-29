@@ -5,9 +5,7 @@ import sys
 TICKER = 0
 DATE = 1
 CLOSE = 2
-LOW = 3
-HIGH = 4
-VOLUME = 5
+VOLUME = 3
 
 START_YEAR = 2008
 END_YEAR = 2018
@@ -60,17 +58,15 @@ def parse_values(value_list):
     ticker = value_list[TICKER].strip()
     year = int(value_list[DATE].strip()[0:4])
     close = float(value_list[CLOSE].strip())
-    low = float(value_list[LOW].strip())
-    high = float(value_list[HIGH].strip())
     volume = float(value_list[VOLUME].strip())
-    return [ticker, year, close, low, high, volume]
+    return [ticker, year, close, volume]
 
 
 for line in sys.stdin:
     value_list = line.strip().split(',')
 
-    if len(value_list) == 6:
-        ticker, year, close, low, high, volume = parse_values(value_list)
+    if len(value_list) == 4:
+        ticker, year, close, volume = parse_values(value_list)
 
         if current_ticker and current_ticker != ticker:
             if first_year == START_YEAR and last_year == END_YEAR:
@@ -80,8 +76,8 @@ for line in sys.stdin:
             first_year = year
             close_price_final_value = close
             last_year = year
-            min_low_price = low
-            max_high_price = high
+            min_low_price = close
+            max_high_price = close
             avg_volume.reset()
 
         else:
@@ -91,8 +87,8 @@ for line in sys.stdin:
 
             close_price_final_value = close
             last_year = year
-            min_low_price = min(min_low_price, low)
-            max_high_price = max(max_high_price, high)
+            min_low_price = min(min_low_price, close)
+            max_high_price = max(max_high_price, close)
             avg_volume.add(volume)
 
         current_ticker = ticker

@@ -13,7 +13,7 @@ def respect_condition(year, ticker):
 
 ticker_2_name = {}
 
-with open("job3b_test_local.csv") as csv_file:
+with open("job3_test.csv") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     firstLine = True
 

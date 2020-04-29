@@ -3,7 +3,7 @@
 import sys
 import csv
 
-STOCKS_INFO_FILE = 'historical_stocks.csv'
+STOCKS_INFO_FILE = 'job2_test.csv'
 START_YEAR = 2008
 END_YEAR = 2018
 
@@ -19,10 +19,12 @@ with open(STOCKS_INFO_FILE) as csv_file:
     firstLine = True
 
     for row in csv_reader:
-        if ticker != 'ticker':
+        if not firstLine:
             ticker, _, _, sector, _ = row
             if sector != 'N/A':
                 ticker_2_Sector[ticker] = sector
+        else:
+            firstLine = False
 
 
 for line in sys.stdin:

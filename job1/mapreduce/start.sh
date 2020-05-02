@@ -10,10 +10,7 @@ hadoop jar hadoop-streaming-3.2.1.jar \
 	-mapper mapper.py \
 	-reducer reducer.py \
 	-input /input/$INPUT_NAME \
-	-output /output/result \
+	-output /user/hadoop/output/result \
 	-file mapper.py \
 	-file reducer.py
-
-# hdfs dfs -cat /output/result/part-00000
-# hdfs dfs -rm -r -f /output
 

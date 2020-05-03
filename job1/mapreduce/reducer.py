@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import sys
 
-# constant for fields position
 TICKER = 0
 DATE = 1
 CLOSE = 2
@@ -11,7 +10,7 @@ START_YEAR = 2008
 END_YEAR = 2018
 
 
-class AvgVolume:
+class AverageObject:
 
     def __init__(self):
         self.volume_sum = 0
@@ -22,22 +21,21 @@ class AvgVolume:
         self.volume_count += 1
 
     def get_avg(self):
-        return self.volume_sum/self.volume_count
+        return self.volume_sum / self.volume_count
 
     def reset(self):
         self.__init__()
 
 
-# global variables
 result = []
 current_ticker = None
-close_price_starting_value = None
 first_year = None
-close_price_final_value = None
 last_year = None
-min_low_price = sys.maxsize
-max_high_price = - sys.maxsize
-avg_volume = AvgVolume()
+close_price_starting_value = None
+close_price_final_value = None
+min_price = sys.maxsize
+max_price = - sys.maxsize
+avg_volume = AverageObject()
 
 
 def append_item_to_list():
@@ -46,8 +44,8 @@ def append_item_to_list():
 
     record = {'ticker': current_ticker,
               'percentageChange': percentage_change,
-              'minLowPrice': min_low_price,
-              'maxHighPrice': max_high_price,
+              'minPrice': min_price,
+              'maxPrice': max_price,
               'avgVolume': avg_volume.get_avg()
               }
 
@@ -76,8 +74,8 @@ for line in sys.stdin:
             first_year = year
             close_price_final_value = close
             last_year = year
-            min_low_price = close
-            max_high_price = close
+            min_price = close
+            max_price = close
             avg_volume.reset()
 
         else:
@@ -87,8 +85,8 @@ for line in sys.stdin:
 
             close_price_final_value = close
             last_year = year
-            min_low_price = min(min_low_price, close)
-            max_high_price = max(max_high_price, close)
+            min_price = min(min_price, close)
+            max_price = max(max_price, close)
             avg_volume.add(volume)
 
         current_ticker = ticker
@@ -101,6 +99,6 @@ sorted_result = sorted(result, key=lambda k: k['percentageChange'], reverse=True
 for item in sorted_result:
     print('{}\t{}%\t{}\t{}\t{}'.format(item['ticker'],
                                        item['percentageChange'],
-                                       item['minLowPrice'],
-                                       item['maxHighPrice'],
+                                       item['minPrice'],
+                                       item['maxPrice'],
                                        item['avgVolume']))

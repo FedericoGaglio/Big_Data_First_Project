@@ -6,5 +6,3 @@
 	-input input/dataset/job1_test_price.csv\
 	-output output/result
 
-	percentageChange = ()
-

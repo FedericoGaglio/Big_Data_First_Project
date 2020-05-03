@@ -11,7 +11,7 @@ VOLUME = 4
 
 
 class AverageObject:
-    def __init__(self, value = 0.0):
+    def __init__(self, value=0.0):
         self.value = value
         self.count = 1 if value else 0
 
@@ -51,6 +51,7 @@ class Sector:
         self.year_2_record[year].add_year_change(year_change)
         self.year_2_record[year].add_daily_price(daily_price)
 
+
 result = {}
 
 current_sector = None
@@ -69,6 +70,7 @@ def parse_values(value_list):
     close = float(value_list[CLOSE].strip())
     volume = int(value_list[VOLUME].strip())
     return (sector, ticker, date, close, volume)
+
 
 def update():
     app_year_change = ((last_close_ticker_year - first_close_ticker_year) / first_close_ticker_year) * 100
@@ -129,4 +131,5 @@ for r in result:
     print(str(sector.name) + ":")
     for year in sector.year_2_record.keys():
         record = sector.year_2_record[year]
-        print("\t-" + str(year) + " { " + str(record.avg_year_volume.avg()) + ", " + str(record.avg_year_change_company.avg()) + ", " + str(record.avg_daily_price.avg()) + "}")
+        print("\t-" + str(year) + " { " + str(record.avg_year_volume.avg()) + ", " + str(
+            record.avg_year_change_company.avg()) + ", " + str(record.avg_daily_price.avg()) + "}")

@@ -1,1 +1,1 @@
-./bin/hive -f /Users/alessio/Documents/Università/big-data/Big_Data_First_Project/job1/hive/job_1_local.hql
+./bin/hive -f /Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/job1/hive/job_1_local.hql

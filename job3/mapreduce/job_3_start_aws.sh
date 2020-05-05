@@ -1,11 +1,11 @@
-PEM_FILE=/Users/alessio/Documents/Università/big-data/alessio_bigdata.pem
-PATH_STREAMING=/Users/alessio/Documents/Università/big-data/hadoop-3.2.1/streaming/hadoop-streaming-3.2.1.jar
-MAPPER=/Users/alessio/Documents/Università/big-data/Big_Data_First_Project/job3/mapreduce/mapper.py
-REDUCER=/Users/alessio/Documents/Università/big-data/Big_Data_First_Project/job3/mapreduce/reducer.py
-MAPPER2=/Users/alessio/Documents/Università/big-data/Big_Data_First_Project/job3/mapreduce/mapper2.py
-REDUCER2=/Users/alessio/Documents/Università/big-data/Big_Data_First_Project/job3/mapreduce/reducer2.py
-INPUT_PATH=/Users/alessio/Documents/Università/big-data/Big_Data_First_Project/dataset/
-START=/Users/alessio/Documents/Università/big-data/Big_Data_First_Project/job3/mapreduce/start3.sh
+PEM_FILE=/Users/alessio/Documents/Universita/big-data/alessio_bigdata.pem
+PATH_STREAMING=/Users/alessio/Documents/Universita/big-data/hadoop-3.2.1/streaming/hadoop-streaming-3.2.1.jar
+MAPPER=/Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/job3/mapreduce/mapper.py
+REDUCER=/Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/job3/mapreduce/reducer.py
+MAPPER2=/Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/job3/mapreduce/mapper2.py
+REDUCER2=/Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/job3/mapreduce/reducer2.py
+INPUT_PATH=/Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/dataset/
+START=/Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/job3/mapreduce/start3.sh
 
 
 INPUT_NAME=job3_test_price.csv

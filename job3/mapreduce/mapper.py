@@ -6,6 +6,10 @@ import csv
 START_YEAR = 2016
 END_YEAR = 2018
 
+STOCKS_INFO_FILE = '/Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/dataset/historical_stocks.csv'
+
+
+
 
 def respect_condition(year, ticker):
     return year in range(START_YEAR, END_YEAR + 1) and ticker in ticker_2_name;
@@ -13,7 +17,7 @@ def respect_condition(year, ticker):
 
 ticker_2_name = {}
 
-with open("job3_test.csv") as csv_file:
+with open(STOCKS_INFO_FILE) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     firstLine = True
 

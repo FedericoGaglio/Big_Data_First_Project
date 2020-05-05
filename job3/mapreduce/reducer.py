@@ -73,6 +73,9 @@ if current_ticker:
     result.append(current_company)
 
 for company in result:
-    print(str(company.change_year[2016]) + "," + str(company.change_year[2017]) + "," + str(company.change_year[2018]) + "," + str(company.name))
+    try:
+        print(str(company.change_year[2016]) + "," + str(company.change_year[2017]) + "," + str(company.change_year[2018]) + "," + str(company.name))
+    except:
+        pass
 
 

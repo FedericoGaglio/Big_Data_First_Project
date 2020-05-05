@@ -3,7 +3,7 @@
 import sys
 import csv
 
-STOCKS_INFO_FILE = 'job2_test.csv'
+STOCKS_INFO_FILE = '/Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/dataset/historical_stocks.csv'
 START_YEAR = 2008
 END_YEAR = 2018
 

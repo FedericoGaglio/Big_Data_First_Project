@@ -12,7 +12,7 @@ ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ',' 
 TBLPROPERTIES("skip.header.line.count"="1");
 
-LOAD DATA LOCAL INPATH '/Users/alessio/Documents/Università/big-data/Big_Data_First_Project/dataset/job2_test_price.csv' 
+LOAD DATA LOCAL INPATH '/Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/dataset/job2_test_price.csv' 
 OVERWRITE INTO TABLE historical_stock_prices;
 
 CREATE TABLE historical_stock (
@@ -25,7 +25,7 @@ ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ',' 
 TBLPROPERTIES("skip.header.line.count"="1");
 
-LOAD DATA LOCAL INPATH '/Users/alessio/Documents/Università/big-data/Big_Data_First_Project/dataset/job2_test.csv' 
+LOAD DATA LOCAL INPATH '/Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/dataset/job2_test.csv' 
 OVERWRITE INTO TABLE historical_stock;
 
 CREATE TABLE IF NOT EXISTS main_table AS 

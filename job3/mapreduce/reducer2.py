@@ -15,13 +15,19 @@ current_second_year = None
 current_third_year = None
 current_name = None
 
+VAR = 50
+
 
 def parse_values(value_list):
-    first_year = value_list[FIRST_YEAR].strip()
-    second_year = value_list[SECOND_YEAR].strip()
-    third_year = value_list[THIRD_YEAR].strip()
+    first_year = int(float(value_list[FIRST_YEAR].strip()))
+    second_year = int(float(value_list[SECOND_YEAR].strip()))
+    third_year = int(float(value_list[THIRD_YEAR].strip()))
     name = value_list[NAME].strip()
     return (first_year, second_year, third_year, name)
+
+
+def equals(first_trend, second_trend):
+    return first_trend in range(second_trend-VAR, second_year+VAR+1)
 
 # main script
 for line in sys.stdin:
@@ -37,24 +43,30 @@ for line in sys.stdin:
             current_name = name
             result.append(current_name)
         else:
-            if current_first_year == first_year and current_second_year == second_year and current_third_year == third_year:
+            if equals(current_first_year, first_year) and equals(current_second_year, second_year) and equals(current_third_year, third_year):
                 current_name = name
-                result.append(current_name)
+                result.append(current_name + " *** " + str(first_year) + " " + str(second_year) + " " + str(third_year) + " *** ")
             else:
-                print(str(current_first_year) + " " + str(current_second_year) + " " + str(current_third_year))
-                for company in result:
-                    print(company)
+                try:
+                    print(str(current_first_year) + " " + str(current_second_year) + " " + str(current_third_year))
+                    for company in result:
+                        print(company)
+                except:
+                    pass
                 result = []
                 current_name = name
-                result.append(current_name)
+                result.append(current_name + " *** " + str(first_year) + " " + str(second_year) + " " + str(third_year) + " *** ")
                 current_first_year = first_year
                 current_second_year = second_year
                 current_third_year = third_year
 
 # print last computed key
 if current_name:
-    print(str(current_first_year) + " " + str(current_second_year) + " " + str(current_third_year))
-    for company in result:
-        print(company)
+    try:
+        print(str(current_first_year) + " " + str(current_second_year) + " " + str(current_third_year))
+        for company in result:
+            print(company)
+    except:
+        pass
 
 

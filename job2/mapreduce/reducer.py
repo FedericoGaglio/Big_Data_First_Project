@@ -1,8 +1,8 @@
 #!/usr/bin/env python
+
 import sys
 import json
 
-# field position of each row taken from stdin
 SECTOR = 0
 TICKER = 1
 DATE = 2
@@ -71,10 +71,29 @@ def parse_values(value_list):
     volume = int(value_list[VOLUME].strip())
     return (sector, ticker, date, close, volume)
 
-
-def update():
+def add_sector_to_result():
     app_year_change = ((last_close_ticker_year - first_close_ticker_year) / first_close_ticker_year) * 100
     result[current_sector].update(current_year, volume_ticker_year, app_year_change, avg_price_ticker_year.avg())
+
+def increase_temporary_variables(close_param, volume_param):
+    global last_close_ticker_year
+    global volume_ticker_year
+    global avg_price_ticker_year
+    
+    last_close_ticker_year = close_param
+    volume_ticker_year += volume_param
+    avg_price_ticker_year.add(close_param)
+
+def restore_temporary_variables(close_param, volume_param):
+    global volume_ticker_year
+    global first_close_ticker_year
+    global last_close_ticker_year
+    global avg_price_ticker_year
+
+    volume_ticker_year = volume_param
+    first_close_ticker_year = close_param
+    last_close_ticker_year = close_param
+    avg_price_ticker_year = AverageObject(close_param)
 
 
 # main script
@@ -87,36 +106,16 @@ for line in sys.stdin:
 
         if not current_sector:
             result[sector] = Sector(sector)
-            volume_ticker_year = volume
             first_close_ticker_year = close
-            last_close_ticker_year = close
-            avg_price_ticker_year.add(close)
+            increase_temporary_variables(close, volume)
         else:
-            if current_sector == sector:
-                if current_ticker == ticker:
-                    if current_year == year:
-                        volume_ticker_year += volume
-                        last_close_ticker_year = close
-                        avg_price_ticker_year.add(close)
-                    else:
-                        update()
-                        volume_ticker_year = volume
-                        first_close_ticker_year = close
-                        last_close_ticker_year = close
-                        avg_price_ticker_year = AverageObject(close)
-                else:
-                    update()
-                    volume_ticker_year = volume
-                    first_close_ticker_year = close
-                    last_close_ticker_year = close
-                    avg_price_ticker_year = AverageObject(close)
+            if current_sector == sector and current_ticker == ticker and current_year == year:
+                increase_temporary_variables(close, volume)
             else:
-                result[sector] = Sector(sector)
-                update()
-                volume_ticker_year = volume
-                first_close_ticker_year = close
-                last_close_ticker_year = close
-                avg_price_ticker_year = AverageObject(close)
+                if current_sector != sector:
+                    result[sector] = Sector(sector)
+                add_sector_to_result()
+                restore_temporary_variables(close, volume)
 
         current_sector = sector
         current_ticker = ticker
@@ -124,7 +123,7 @@ for line in sys.stdin:
 
 # print last computed key
 if current_sector:
-    update()
+    add_sector_to_result()
 
 for r in result:
     sector = result[r]

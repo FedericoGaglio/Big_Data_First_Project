@@ -1,5 +1,5 @@
-INPUT_NAME=job2_test_price.csv
-INPUT_2_NAME=job2_test.csv
+INPUT_NAME=
+INPUT_2_NAME=
 
 hdfs dfs -mkdir /input
 

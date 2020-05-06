@@ -1,4 +1,4 @@
-INPUT_3_NAME=job3_test.csv
+INPUT_3_NAME=
 
 hdfs dfs -mkdir /input
 

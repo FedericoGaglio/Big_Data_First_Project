@@ -8,12 +8,8 @@ END_YEAR = 2018
 
 STOCKS_INFO_FILE = '/Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/dataset/historical_stocks.csv'
 
-
-
-
 def respect_condition(year, ticker):
-    return year in range(START_YEAR, END_YEAR + 1) and ticker in ticker_2_name;
-
+    return year in range(START_YEAR, END_YEAR + 1) and ticker in ticker_2_name
 
 ticker_2_name = {}
 
@@ -38,4 +34,4 @@ for line in sys.stdin:
 
             if respect_condition(year, ticker):
                 name = ticker_2_name[ticker]
-                print('{},{},{},{}'.format(ticker, date, close, name))
+                print('{}\t{}\t{}\t{}'.format(ticker, date, close, name))

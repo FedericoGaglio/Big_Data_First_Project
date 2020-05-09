@@ -39,31 +39,31 @@ input_file_2 = input_file_2 \
     .filter(lambda line: line[3] != "N/A") \
 
 # (ticker, ((close, volume, date), sector))
-total = input_file \
+main_table = input_file \
     .map(lambda line: (line[0], (line[2], line[6], line[7]))) \
     .join(input_file_2.map(lambda line: (line[0], (line[3]))))
 
 # (ticker, close, volume, date, sector)
-total = total \
+main_table = main_table \
     .map(lambda line: (line[0], float(line[1][0][0]), float(line[1][0][1]), line[1][0][2], line[1][1]))
 
 # persist RDD in memory
-total \
+main_table \
     .persist(StorageLevel.MEMORY_AND_DISK)
 
 # ((sector, year), avg_volume)
-avg_volume = total \
+avg_volume = main_table \
     .map(lambda line: ((line[4], parse_year(line[3])), (line[2], 1))) \
     .reduceByKey(lambda x, y: (x[0]+y[0],x[1]+y[1])) \
     .map(lambda line: ((line[0][0], line[0][1]), line[1][0]/line[1][1]))
 
 # ((sector, ticker, year), (first_date_close, close)))
-first_data = total \
+first_data = main_table \
     .map(lambda line: ((line[4], line[0], parse_year(line[3])), (line[3], line[1]))) \
     .reduceByKey(lambda x, y: first_close_date(x, y))
 
 # ((sector, ticker, year), (last_date_close, close)))
-last_data = total \
+last_data = main_table \
     .map(lambda line: ((line[4], line[0], parse_year(line[3])), (line[3], line[1]))) \
     .reduceByKey(lambda x, y: last_close_date(x, y))
 
@@ -82,7 +82,7 @@ year_change = year_change \
     .map(lambda line: ((line[0][0], line[0][1]), line[1][0] / line[1][1]))
 
 # ((sector, ticker, year), avg_close)
-daily_price = total \
+daily_price = main_table \
     .map(lambda line: ((line[4], line[0], parse_year(line[3])), (line[1], 1))) \
     .reduceByKey(lambda x, y: (x[0]+y[0],x[1]+y[1])) \
     .map(lambda line: (line[0], line[1][0]/line[1][1]))

@@ -46,6 +46,10 @@ total = input_file \
 total = total \
     .map(lambda line: (line[0], float(line[1][0][0]), line[1][0][1], line[1][1]))
 
+# persist RDD in memory
+total \
+    .persist(StorageLevel.MEMORY_AND_DISK)
+
 # ((name, ticker, year), (first_date_close, close)))
 first_data = total \
     .map(lambda line: ((line[3], line[0], parse_year(line[2])), (line[2], line[1]))) \

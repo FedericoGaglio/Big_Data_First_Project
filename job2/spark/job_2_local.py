@@ -47,6 +47,10 @@ total = input_file \
 total = total \
     .map(lambda line: (line[0], float(line[1][0][0]), float(line[1][0][1]), line[1][0][2], line[1][1]))
 
+# persist RDD in memory
+total \
+    .persist(StorageLevel.MEMORY_AND_DISK)
+
 # ((sector, year), avg_volume)
 avg_volume = total \
     .map(lambda line: ((line[4], parse_year(line[3])), (line[2], 1))) \

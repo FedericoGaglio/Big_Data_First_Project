@@ -36,4 +36,4 @@ for line in sys.stdin:
 
             if respect_condition(year, ticker):
                 sector = ticker_2_Sector[ticker]
-                print('{},{},{},{},{}'.format(sector, ticker, date, close, volume))
+                print('{}\t{}\t{}\t{}\t{}'.format(sector, ticker, date, close, volume))

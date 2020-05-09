@@ -19,4 +19,4 @@ for line in sys.stdin:
             year = int(date[0:4])
 
             if respect_condition(year):
-                print('{},{},{},{}'.format(ticker, date, close, volume))
+                print('{}\t{}\t{}\t{}'.format(ticker, date, close, volume))

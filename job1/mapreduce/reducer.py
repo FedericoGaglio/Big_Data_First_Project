@@ -61,7 +61,7 @@ def parse_values(value_list):
 
 
 for line in sys.stdin:
-    value_list = line.strip().split(',')
+    value_list = line.strip().split('\t')
 
     if len(value_list) == 4:
         ticker, year, close, volume = parse_values(value_list)

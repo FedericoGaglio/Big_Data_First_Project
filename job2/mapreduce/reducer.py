@@ -98,7 +98,7 @@ def restore_temporary_variables(close_param, volume_param):
 
 # main script
 for line in sys.stdin:
-    value_list = line.strip().split(',')
+    value_list = line.strip().split('\t')
 
     if len(value_list) == 5:
         sector, ticker, date, close, volume = parse_values(value_list)

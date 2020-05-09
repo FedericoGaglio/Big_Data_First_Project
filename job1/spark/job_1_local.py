@@ -36,12 +36,12 @@ main_table \
     .persist(StorageLevel.MEMORY_AND_DISK)
 
 # (ticker, min_close)
-min_ticker_low = main_table \
+min_ticker_close = main_table \
     .map(lambda line: (line[0], float(line[2]))) \
     .reduceByKey(lambda x, y: min(x, y))
 
 # (ticker, max_close)
-max_ticker_high = main_table \
+max_ticker_close = main_table \
     .map(lambda line: (line[0], float(line[2]))) \
     .reduceByKey(lambda x, y: max(x, y))
 
@@ -70,8 +70,8 @@ inc_per = join_inc_per \
                        (((float(line[1][1][0]) - float(line[1][0][0])) / float(line[1][0][0])) * 100)))
 
 # (ticker, (((min, max), avg), inc_prc))
-result = min_ticker_low \
-    .join(max_ticker_high) \
+result = min_ticker_close \
+    .join(max_ticker_close) \
     .join(avg_ticker_volume) \
     .join(inc_per) \
     .sortBy(lambda line: line[0]) \

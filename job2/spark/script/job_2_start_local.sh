@@ -1,0 +1,1 @@
+./bin/spark-submit /Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/job2/spark/job_2_local.py

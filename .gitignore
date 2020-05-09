@@ -4,3 +4,4 @@
 data/
 dataset/historical_stocks.csv
 dataset/historical_stock_prices.csv
+*/spark/result/job_*

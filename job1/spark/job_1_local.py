@@ -81,5 +81,5 @@ result = min_ticker_low \
                        "average_volume": line[1][0][1],
                        "increase_percent": line[1][1]})
 
-result.coalesce(1).saveAsTextFile("file:///Users/alessio/Desktop/out/out1.txt")
+result.coalesce(1).saveAsTextFile("file:///Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/job1/spark/result/job_1_result")
 

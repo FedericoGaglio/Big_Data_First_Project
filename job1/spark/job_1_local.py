@@ -22,7 +22,7 @@ def max_close(x, y):
 
 
 input_file = sc.textFile(
-    "file:///Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/dataset/job1_test_price.csv") \
+    "file:///Users/alessio/Documents/Universita/big-data/Big_Data_First_Project/dataset/10000000.csv") \
     .map(lambda line: line.split(","))
 
 input_file = input_file \
